@@ -1,2 +1,14 @@
-package com.example.acquaintance;public class Engine {
+package com.example.acquaintance;
+
+import org.springframework.stereotype.Component;
+
+@Component
+public class Engine {
+    public Engine() {
+        System.out.println("Двигатель запущен");
+    }
+
+    public void go(){
+        System.out.println("Поехали");
+    }
 }

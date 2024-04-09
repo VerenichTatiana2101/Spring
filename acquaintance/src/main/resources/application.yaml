@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url:localhost:8080
+    password:329960q
+
+application:
+  name: acquaintance
