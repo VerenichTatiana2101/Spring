@@ -51,9 +51,8 @@ public class UserRepository {
         // при нажатии на кнопку вывести форму, которая была при добавлении
         // после заполнения новыми данными сделать обновление списка
         // можно добавить сообщение данные успешно изменены
-        user.setId();
-        user.setFirstName();
-        user.setLastName();
+        String sql = "UPDATE userTable SET firstName = ?, lastName = ? WHERE id = ?";
+        jdbc.update(sql, user.getFirstName(), user.getLastName(), user.getId());
         return user;
     }
 
