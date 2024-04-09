@@ -47,17 +47,45 @@ public class UserController {
         return "redirect:/users";
     }
 
+    /*
     //- @GetMapping("/user-update/{id}")
     //- @PostMapping("/user-update")
     @GetMapping("user-update/{id}")
     public String updateUserByID(@PathVariable("id") int id){
         userService.getOne(id);
-        return "user-create";
+        // было бы хорошо если бы данные уже там стояли и можно было бы изменить только то, что нужно
+        return "user-update";
     }
 
     @PostMapping("/user-update")
     public String updateUsers(User user){
         userService.updateUser(user);
         return "redirect:/users";
+    }*/
+
+
+    /** Метод при нажатии на кнопку выводит заполненную форму для изменения
+     * @param model
+     * @param id user id
+     * @return
+     */
+    @GetMapping("/user-update/{id}")
+    public String updateUserByID(Model model, @PathVariable int id) {
+        User user = userService.getOne(id);
+        if (user == null) return "redirect:/users";
+        System.out.println(user);
+        model.addAttribute("user", user);
+        return "user-update";
     }
+
+    /** Метод обновления данных
+     * @param user
+     * @return
+     */
+    @PostMapping("/user-update/{id}")
+    public String updateUser(User user) {
+        userService.update(user);
+        return "redirect:/users";
+    }
+
 }

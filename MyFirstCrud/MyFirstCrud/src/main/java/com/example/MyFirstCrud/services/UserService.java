@@ -31,13 +31,19 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    //- User update(User user)
-    //- User getOne(int id)
-    public User updateUser(User user){
-        return userRepository.update(user);
+
+    /**
+     * Получение пользователя через репозиторий
+     * @param id
+     */
+    public User getOne(int id) {
+        return userRepository.getById(id);
     }
 
-    public void getOne(int id){
-        userRepository.getById(id);
+    /**
+     * Обновление данных пользователя
+     */
+    public void update(User user) {
+        userRepository.update(user);
     }
 }

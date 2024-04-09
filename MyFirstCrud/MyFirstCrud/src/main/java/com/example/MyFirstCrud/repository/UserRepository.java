@@ -4,6 +4,7 @@ import com.example.MyFirstCrud.model.User;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
 
@@ -32,11 +33,12 @@ public class UserRepository {
     public User save(User user) {
         String sql = "INSERT INTO userTable (firstName,lastName) VALUES ( ?, ?)";
         jdbc.update(sql, user.getFirstName(), user.getLastName());
-        return  user;
+        return user;
     }
 
     /**
      * Метод удаления записи пользователя из БД по ID
+     *
      * @param id идентификатор пользователя
      */
     public void deleteById(int id) {
@@ -44,20 +46,53 @@ public class UserRepository {
         jdbc.update(sql, id);
     }
 
-    //- User update(User user)
-    //- User getOne(int id)
-    public User update(User user) {
-        // есть кнопка редактировать
-        // при нажатии на кнопку вывести форму, которая была при добавлении
-        // после заполнения новыми данными сделать обновление списка
-        // можно добавить сообщение данные успешно изменены
-        String sql = "UPDATE userTable SET firstName = ?, lastName = ? WHERE id = ?";
-        jdbc.update(sql, user.getFirstName(), user.getLastName(), user.getId());
-        return user;
+    /**
+     * Метод получает user из БД по id
+     *
+     * @param id
+     * @return - если нет записи, возвращает null
+     */
+    public User getById(int id) {
+        if (!existUserById(id)) return null;
+        String sql = "SELECT id,firstName,lastName FROM userTable WHERE id = ?";
+        return jdbc.queryForObject(sql,
+                (resultSet, rowNum) -> {
+                    User newUser = new User();
+                    newUser.setId(Integer.parseInt(resultSet.getString("id")));
+                    newUser.setFirstName(resultSet.getString("firstName"));
+                    newUser.setLastName(resultSet.getString("lastName"));
+                    return newUser;
+                },
+                id);
     }
 
-    public void getById(int id) {
-        String sql = "SELECT FROM userTable WHERE id=?";
-        jdbc.update(sql, id);
+    /**
+     * Метод обновления данных пользователя по ID
+     *
+     * @param user
+     */
+    public void update(User user) {
+        if (existUserById(user.getId())) {
+            String sql = "UPDATE userTable SET firstName = ?, lastName = ? where id = ?";
+            jdbc.update(sql,
+                    user.getFirstName(),
+                    user.getLastName(),
+                    user.getId());
+        }
     }
+
+
+    /**
+     * Метод проверяет есть ли запись с id в БД
+     *
+     * @param id id
+     * @return true
+     */
+    private boolean existUserById(int id) {
+        String sql = "SELECT count(*) FROM userTable WHERE id = ?";
+        int countRow = jdbc.queryForObject(sql, Integer.class, id);
+        return countRow > 0;
+    }
+
+
 }
