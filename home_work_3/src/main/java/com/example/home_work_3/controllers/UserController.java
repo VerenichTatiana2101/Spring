@@ -30,11 +30,12 @@ public class UserController {
      * обработчик userAddFromParam извлекающий данные для
      * создания пользователя из параметров HTTP запроса
      */
+    @PostMapping
     public String userAddFromParams(
             @RequestParam(defaultValue = "") String name,
             @RequestParam(defaultValue = "") int age,
             @RequestParam(defaultValue = "") String email){
         registrationService.processRegistration(name, age, email);
-        return "User" + name + "added from param";
+        return "User " + name + " added from param";
     }
 }
