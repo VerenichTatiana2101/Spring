@@ -1,6 +1,7 @@
 package com.example.MyFirstCrud.repository;
 
 import com.example.MyFirstCrud.model.User;
+import lombok.AllArgsConstructor;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
@@ -9,12 +10,9 @@ import java.util.List;
 
 
 @Repository
+@AllArgsConstructor
 public class UserRepository {
     private final JdbcTemplate jdbc;
-
-    public UserRepository(JdbcTemplate jdbc) {
-        this.jdbc = jdbc;
-    }
 
     public List<User> findAll() {
         String sql = "SELECT * FROM userTable";

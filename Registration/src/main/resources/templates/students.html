@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>students</title>
+    <link href="../static/style.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<div class="header center">
+    <a class="header_link" href="about.html">О нас</a>
+    <a class="header_link" href="#">Контакты</a>
+</div>
+
+<div class="top center">
+    <h1 class="title">Регистрация</h1>
+
+</div>
+
+<div class="about center">
+    <h2 class="heading">Введите свои данные</h2>
+    <div class="about_content">
+        <img class="img" src="my_img/student.svg" alt="img">
+        <div class="about_text">
+            <form action="/students" method="post">
+                Ваше имя <label>
+                <input type="text" name="name">
+            </label><br>
+                Пароль <label>
+                <input type="password" name="password">
+            </label><br>
+                Почта <label>
+                <input type="email" name="email">
+            </label><br>
+                Дата рождения <label>
+                <input type="date" name="birthday">
+            </label><br>
+                <button type="submit">Отправить</button>
+                <button type="reset">Удалить</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<h2>STUDENTS GROUP</h2>
+<table>
+    <tr>
+        <th>NAME</th>
+        <th>EMAIL</th>
+        <th>BIRTHDAY</th>
+    </tr>
+    <tr th:each="p: ${students}">
+        <td th:text="${student.name}"></td>
+        <td th:text="${student.email}"></td>
+        <td th:text="${student.birthday}"></td>
+
+    </tr>
+</table>
+</body>
+
+</html>

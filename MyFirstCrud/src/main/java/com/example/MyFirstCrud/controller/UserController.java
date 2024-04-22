@@ -2,6 +2,7 @@ package com.example.MyFirstCrud.controller;
 
 import com.example.MyFirstCrud.model.User;
 import com.example.MyFirstCrud.services.UserService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,11 +10,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class UserController {
-    @Autowired
     private UserService userService;
 
     @GetMapping("/users")
@@ -22,7 +24,6 @@ public class UserController {
 
         model.addAttribute("users", users);
         return "user-list";
-        //return "home.html";
     }
 
     @GetMapping("/user-create")
@@ -46,23 +47,6 @@ public class UserController {
         userService.deleteById(id);
         return "redirect:/users";
     }
-
-    /*
-    //- @GetMapping("/user-update/{id}")
-    //- @PostMapping("/user-update")
-    @GetMapping("user-update/{id}")
-    public String updateUserByID(@PathVariable("id") int id){
-        userService.getOne(id);
-        // было бы хорошо если бы данные уже там стояли и можно было бы изменить только то, что нужно
-        return "user-update";
-    }
-
-    @PostMapping("/user-update")
-    public String updateUsers(User user){
-        userService.updateUser(user);
-        return "redirect:/users";
-    }*/
-
 
     /** Метод при нажатии на кнопку выводит заполненную форму для изменения
      * @param model
