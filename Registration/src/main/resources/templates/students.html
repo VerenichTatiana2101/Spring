@@ -1,63 +1,37 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>students</title>
-    <link href="../static/style.css" type="text/css" rel="stylesheet">
+    <title>Home Page</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/style.css">
 </head>
-
 <body>
-<div class="header center">
-    <a class="header_link" href="about.html">О нас</a>
-    <a class="header_link" href="#">Контакты</a>
-</div>
+<h1 class="header">Students</h1>
+<h2>View students</h2>
 
-<div class="top center">
-    <h1 class="title">Регистрация</h1>
-
-</div>
-
-<div class="about center">
-    <h2 class="heading">Введите свои данные</h2>
-    <div class="about_content">
-        <img class="img" src="my_img/student.svg" alt="img">
-        <div class="about_text">
-            <form action="/students" method="post">
-                Ваше имя <label>
-                <input type="text" name="name">
-            </label><br>
-                Пароль <label>
-                <input type="password" name="password">
-            </label><br>
-                Почта <label>
-                <input type="email" name="email">
-            </label><br>
-                Дата рождения <label>
-                <input type="date" name="birthday">
-            </label><br>
-                <button type="submit">Отправить</button>
-                <button type="reset">Удалить</button>
-            </form>
-        </div>
-    </div>
-</div>
-
-<h2>STUDENTS GROUP</h2>
 <table>
     <tr>
-        <th>NAME</th>
+        <th>STUDENT NAME</th>
+        <th>PASSWORD</th>
         <th>EMAIL</th>
-        <th>BIRTHDAY</th>
+        <th>BIRTHDATE</th>
     </tr>
-    <tr th:each="p: ${students}">
+    <tr th:each="p: ${students}" >
         <td th:text="${student.name}"></td>
+        <td th:text="${student.password}"></td>
         <td th:text="${student.email}"></td>
-        <td th:text="${student.birthday}"></td>
-
+        <td th:text="${student.birthdate}"></td>
     </tr>
 </table>
-</body>
 
+<h2>Add a student</h2>
+<form action="/students" method="post">
+    Name: <input type="text" name="name"><br />
+    Password: <input type="text" step="any" name="password"><br />
+    Email: <input type="text" step="any" name="email"><br />
+    <label for="birthdate">Birthdate:</label>
+    <input type="date" id="birthdate" name="birthdate"><br>
+    <button type="submit">Add student</button>
+</form>
+</body>
 </html>

@@ -15,5 +15,4 @@ public class StudentRepository {
     public void addStudent(Student student) {
         students.add(student);
     }
-
 }

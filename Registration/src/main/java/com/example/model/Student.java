@@ -1,13 +1,16 @@
 package com.example.model;
 
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 public class Student {
     private String name;
     private String password;
     private String email;
-    private Date birthdate;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate birthdate;
 }
