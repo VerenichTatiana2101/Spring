@@ -7,12 +7,14 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Properties;
 
 
 @Repository
 @AllArgsConstructor
 public class UserRepository {
     private final JdbcTemplate jdbc;
+    Properties queries;
 
     public List<User> findAll() {
         String sql = "SELECT * FROM userTable";
@@ -24,7 +26,6 @@ public class UserRepository {
             rowObject.setLastName(r.getString("lastName"));
             return rowObject;
         };
-
         return jdbc.query(sql, userRowMapper);
     }
 
@@ -91,6 +92,4 @@ public class UserRepository {
         int countRow = jdbc.queryForObject(sql, Integer.class, id);
         return countRow > 0;
     }
-
-
 }

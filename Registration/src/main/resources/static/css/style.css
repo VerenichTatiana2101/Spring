@@ -1,7 +1,6 @@
 * {
     margin: 0;
     padding: 0;
-    background-color: #c795f5;
 }
 
 .center {
@@ -17,6 +16,10 @@ a {
     text-decoration: none;
 }
 
+body{
+    background-color: #D8BFD8
+}
+
 .header {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -29,9 +32,7 @@ a {
     font-weight: 400;
     font-size: 20px;
     line-height: 23px;
-    color: #ffffff;
 }
-
 
 .top {
     padding-top: 84px;
@@ -46,15 +47,16 @@ a {
 
 .title {
     width: 578px;
+    font-size: normal;
     font-weight: 700;
-    font-size: 90px;
+    font-size: 96px;
     line-height: 113px;
     color: #6c63ff;
     mix-blend-mode: normal;
 }
 
 .about {
-    background: rgba(198, 140, 234, 0.34);
+    background: rgba(242, 242, 242, 0.34);
     padding-top: 64px;
     padding-bottom: 194px;
 }
@@ -76,15 +78,24 @@ a {
     flex-direction: row;
 }
 
-.img{
-    max-height: 200px;
-}
-
 .about_text {
     width: 462px;
+    font-size: normal;
     font-weight: 300;
     font-size: 18px;
     line-height: 30px;
     color: #7d7987;
     mix-blend-mode: normal;
+}
+
+.img{
+    height: 200px;
+}
+
+.table{
+    margin: 50px;
+}
+
+.task{
+     padding: 10px;
 }
